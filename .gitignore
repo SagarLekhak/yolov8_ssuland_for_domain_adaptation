@@ -1,7 +1,0 @@
-dataset/
-runs/
-yolov8l.pt
-yolov8n.pt
-yolov8s.pt
-.gitignore  
-# to even ignore the .gitignore file
