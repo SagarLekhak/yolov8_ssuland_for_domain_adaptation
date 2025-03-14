@@ -1,0 +1,8 @@
+
+
+------
+Train folders (Important Ones):
+1. train19 : 1 epoch, model = yolov8s
+2. train21 : 10 epochs, model = yolov8s
+3. train30 : 100 epochs, model = yolov8s          # Most Important one.
+
