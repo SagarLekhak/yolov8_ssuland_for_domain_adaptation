@@ -6,3 +6,11 @@ Train folders (Important Ones):
 2. train21 : 10 epochs, model = yolov8s
 3. train30 : 100 epochs, model = yolov8s          # Most Important one.
 
+-------
+In extracted_landmine_patches folder,
+counts = butterfly_patches_from_ITA_train = 2772 
+counts = starfish_patches_from_ITA_train = 2738
+
+
+
+
