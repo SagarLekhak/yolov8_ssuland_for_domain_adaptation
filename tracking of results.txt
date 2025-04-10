@@ -1,16 +1,127 @@
+---
 
-
-------
-Train folders (Important Ones):
-1. train19 : 1 epoch, model = yolov8s
-2. train21 : 10 epochs, model = yolov8s
-3. train30 : 100 epochs, model = yolov8s          # Most Important one.
 
 -------
 In extracted_landmine_patches folder,
 counts = butterfly_patches_from_ITA_train = 2772 
 counts = starfish_patches_from_ITA_train = 2738
 
+
+------------------------------------------------------------------------------------------------------------------------------
+Train folders (Important Ones):
+1. train19 : 1 epoch, model = yolov8s
+2. train21 : 10 epochs, model = yolov8s
+3. train30 : 100 epochs, model = yolov8s   (a trained model I am using)       # Most Important one.
+
+3. train_30 : 
+
+100 epochs completed in 30.667 hours.
+Optimizer stripped from runs/detect/train30/weights/last.pt, 22.5MB
+Optimizer stripped from runs/detect/train30/weights/best.pt, 22.5MB
+
+Validating runs/detect/train30/weights/best.pt...
+Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+Model summary (fused): 168 layers, 11126358 parameters, 0 gradients
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 89/89 [01:45<00:00,  1.19s/it]
+                   all       2836        654       0.79       0.64      0.684      0.316
+             butterfly        352        352      0.801      0.734      0.769      0.327
+              starfish        302        302       0.78      0.546      0.599      0.304
+Speed: 0.1ms preprocess, 5.0ms inference, 0.0ms loss, 0.3ms postprocess per image
+Results saved to runs/detect/train30
+
+
+4. train 33 (with addition of dataset_1 (just copy paste into diverse backgorunds))
+
+100 epochs completed in 37.561 hours.
+Optimizer stripped from runs/detect/train33/weights/last.pt, 22.5MB
+Optimizer stripped from runs/detect/train33/weights/best.pt, 22.5MB
+
+Validating runs/detect/train33/weights/best.pt...
+Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+Model summary (fused): 168 layers, 11126358 parameters, 0 gradients
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 30/30 [02:12<00:00,  4.41s/it]
+                   all       2836        654      0.786      0.685      0.726      0.323
+             butterfly        352        352      0.778      0.741      0.752      0.315
+              starfish        302        302      0.793      0.629        0.7       0.33
+Speed: 0.1ms preprocess, 4.9ms inference, 0.0ms loss, 0.5ms postprocess per image
+Results saved to runs/detect/train33
+---------------------------------------------------------------------------------------------------------------------------------
+Validations folders (Important ones):
+1. val 3 
+    -(data = "dataset/ITA.yolo/ITA.yaml", split = "test"), 
+    -model = YOLO("/home/sl3088/yolov8_suland/runs/detect/train30/weights/best.pt")
+
+    Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+val: Scanning /home/sl3088/yolov8_suland/dataset/ITA.yolo/test/labels/ITA-v10... 3743 images, 2904 backgrounds, 0 corrupt: 100%|██████████| 3743/3743 [01:55<00:00, 32.46it/s]
+val: New cache created: /home/sl3088/yolov8_suland/dataset/ITA.yolo/test/labels/ITA-v10.cache
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 234/234 [02:23<00:00,  1.63it/s]
+                   all       3743        892      0.735      0.674      0.698      0.298
+             butterfly        457        457      0.742      0.637      0.673      0.281
+              starfish        435        435      0.727       0.71      0.724      0.314
+Speed: 0.2ms preprocess, 4.8ms inference, 0.0ms loss, 0.3ms postprocess per image
+Results saved to runs/detect/val3
+
+
+2. val10 (without label correction in original folder i.e., 0:starfish, 1:btterfly in USA.yaml while it's opposite in ITA.yaml)
+
+Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+val: Scanning /home/sl3088/yolov8_suland/dataset/USA.yolo/val/labels/US1... 4435 images, 909 backgrounds, 0 corrupt: 100%|██████████| 4436/4436 [01:10<00:00, 62.61it/s] 
+val: New cache created: /home/sl3088/yolov8_suland/dataset/USA.yolo/val/labels/US1.cache
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 278/278 [02:53<00:00,  1.60it/s]
+                   all       4436       3787      0.158      0.199      0.106     0.0549
+             butterfly       1344       1387      0.292      0.394      0.177      0.087
+              starfish       2301       2400     0.0243    0.00333     0.0347     0.0227
+Speed: 0.2ms preprocess, 4.8ms inference, 0.0ms loss, 0.4ms postprocess per image
+Results saved to runs/detect/val10
+
+
+3. val11 (with label correction, used folder = USA_modified.yolo)
+
+Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+val: Scanning /home/sl3088/yolov8_suland/dataset/USA_modified.yolo/val/labels/US1... 4435 images, 909 backgrounds, 0 corrupt: 100%|██████████| 4436/4436 [00:05<00:00, 789.61it/s]
+val: New cache created: /home/sl3088/yolov8_suland/dataset/USA_modified.yolo/val/labels/US1.cache
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 278/278 [02:52<00:00,  1.61it/s]
+                   all       4436       3787      0.594      0.264      0.324      0.177
+             butterfly       2301       2400      0.453      0.353      0.354      0.212
+              starfish       1344       1387      0.735      0.174      0.293      0.142
+Speed: 0.2ms preprocess, 4.8ms inference, 0.0ms loss, 0.4ms postprocess per image
+Results saved to runs/detect/val11
+
+
+4. val 12 (val set in ITA.yolo with iou =  0.5), Result = False Positives 
+
+Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+val: Scanning /home/sl3088/yolov8_suland/dataset/ITA.yolo/val/labels/ITA-v15.cache... 2611 images, 2269 backgrounds, 0 corrupt: 100%|██████████| 2836/2836 [00:00<?, ?it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 178/178 [01:47<00:00,  1.65it/s]
+                   all       2836        654      0.791      0.639      0.687      0.315
+             butterfly        352        352      0.803      0.731      0.767      0.322
+              starfish        302        302       0.78      0.546      0.606      0.308
+Speed: 0.2ms preprocess, 4.8ms inference, 0.0ms loss, 0.3ms postprocess per image
+Saving runs/detect/val12/predictions.json...
+Results saved to runs/detect/val12
+
+5. val13 ( model = train 33, after addition of dataset_1) 
+
+Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+Model summary (fused): 168 layers, 11126358 parameters, 0 gradients
+val: Scanning /home/sl3088/yolov8_suland/dataset/ITA.yolo/test/labels/ITA-v10.cache... 3743 images, 2904 backgrounds, 0 corrupt: 100%|██████████| 3743/3743 [00:00<?, ?it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 234/234 [02:31<00:00,  1.55it/s]
+                   all       3743        892      0.741      0.655      0.689      0.295
+             butterfly        457        457      0.772      0.641      0.684      0.283
+              starfish        435        435       0.71      0.669      0.694      0.307
+Speed: 0.2ms preprocess, 4.8ms inference, 0.0ms loss, 0.4ms postprocess per image
+Results saved to runs/detect/val13
+
+6. val14 ( model = train 33, after addition of dataset_1)  
+
+Ultralytics YOLOv8.2.34 🚀 Python-3.11.11 torch-2.5.1+cu124 CUDA:0 (Tesla P40, 22906MiB)
+val: Scanning /home/sl3088/yolov8_suland/dataset/USA_modified.yolo/val/labels/US1.cache... 4435 images, 909 backgrounds, 0 corrupt: 100%|██████████| 4436/4436 [00:00<?, ?it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 278/278 [03:04<00:00,  1.51it/s]
+                   all       4436       3787      0.626      0.349      0.425      0.238
+             butterfly       2301       2400      0.578      0.396      0.429      0.261
+              starfish       1344       1387      0.674      0.302      0.421      0.215
+Speed: 0.2ms preprocess, 4.8ms inference, 0.0ms loss, 0.3ms postprocess per image
+Results saved to runs/detect/val14
 
 
 
