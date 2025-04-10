@@ -11,4 +11,4 @@ Once these augmented landmine images are generated, they will be integrated back
 # References: 
  [1] Vivoli, E.; Bertini, M.; Capineri, L. Deep Learning-Based Real-Time Detection of Surface Landmines Using Optical Imaging. Remote Sens. 2024, 16, 677. https://doi.org/10.3390/rs16040677
 
- 
+  
